@@ -3,7 +3,7 @@ name = "snakemake-executor-plugin-tibanna"
 version = "0.1.0"
 description = "A Snakemake executor plugin for Amazon AWS workflow exection with tibanna."
 authors = [
-    "Soohyun Lee <@SooLee>",
+    "Soohyun Lee <@SooLee>", # TODO please add Soo Lee's email address
     "Johannes Koester <johannes.koester@uni-due.de>"
 ]
 readme = "README.md"
