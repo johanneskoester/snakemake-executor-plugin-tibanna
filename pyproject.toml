@@ -1,0 +1,26 @@
+[tool.poetry]
+name = "snakemake-executor-plugin-tibanna"
+version = "0.1.0"
+description = "A Snakemake executor plugin for Amazon AWS workflow exection with tibanna."
+authors = [
+    "Soohyun Lee <@SooLee>"
+    "Johannes Koester <johannes.koester@uni-due.de>"
+]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+snakemake-interface-common = "^1.3.3"
+snakemake-interface-executor-plugins = "^2.0.0"
+
+
+[tool.poetry.group.dev.dependencies]
+black = "^23.9.1"
+flake8 = "^6.1.0"
+coverage = "^7.3.1"
+pytest = "^7.4.2"
+snakemake = "^7.32.3"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
