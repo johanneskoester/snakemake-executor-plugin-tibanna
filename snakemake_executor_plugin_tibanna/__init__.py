@@ -14,7 +14,7 @@ from snakemake_interface_executor_plugins import ExecutorSettingsBase, CommonSet
 from snakemake_interface_executor_plugins.workflow import WorkflowExecutorInterface
 from snakemake_interface_executor_plugins.logging import LoggerExecutorInterface
 from snakemake_interface_executor_plugins.jobs import (
-    ExecutorJobInterface,
+    JobExecutorInterface,
 )
 from snakemake_interface_common.exceptions import WorkflowError  # noqa
 
@@ -146,7 +146,7 @@ class Executor(RemoteExecutor):
 
         self.container_image = self.workflow.remote_execution_settings.container_image
 
-    def run_job(self, job: ExecutorJobInterface):
+    def run_job(self, job: JobExecutorInterface):
         # Implement here how to run a job.
         # You can access the job's resources, etc.
         # via the job object.
@@ -258,7 +258,7 @@ class Executor(RemoteExecutor):
     def get_snakefile(self):
         return os.path.basename(self.snakefile)
 
-    def add_command(self, job: ExecutorJobInterface, tibanna_args, tibanna_config):
+    def add_command(self, job: JobExecutorInterface, tibanna_args, tibanna_config):
         # format command
         command = self.format_job_exec(job)
 
@@ -267,7 +267,7 @@ class Executor(RemoteExecutor):
         self.logger.debug("command = " + str(command))
         tibanna_args.command = command
 
-    def add_workflow_files(self, job: ExecutorJobInterface, tibanna_args):
+    def add_workflow_files(self, job: JobExecutorInterface, tibanna_args):
         snakefile_fname, snakemake_dir = self.split_filename(self.snakefile)
         snakemake_child_fnames = []
         for src in self.workflow_sources:
@@ -295,7 +295,7 @@ class Executor(RemoteExecutor):
             rel = f
         return rel
 
-    def make_tibanna_input(self, job: ExecutorJobInterface):
+    def make_tibanna_input(self, job: JobExecutorInterface):
         # input & output
         # Local snakemake command here must be run with --default-remote-prefix
         # and --default-remote-provider (forced) but on VM these options will be
