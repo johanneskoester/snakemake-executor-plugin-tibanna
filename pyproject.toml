@@ -12,7 +12,7 @@ readme = "README.md"
 python = "^3.9"
 snakemake-interface-common = "^1.4.1"
 snakemake-interface-executor-plugins = "^4.0.0"
-tibanna = "^3.3.1"
+tibanna = "^4.0.0"
 
 
 [tool.poetry.group.dev.dependencies]
