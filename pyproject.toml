@@ -9,9 +9,9 @@ authors = [
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = ">=3.9,<3.11"
-snakemake-interface-common = "^1.4.1"
-snakemake-interface-executor-plugins = "^4.0.0"
+python = "^3.11"
+snakemake-interface-common = "^1.14.1"
+snakemake-interface-executor-plugins = "^7.0.3"
 tibanna = "^4.0.0"
 
 
@@ -21,6 +21,10 @@ flake8 = "^6.1.0"
 coverage = "^7.3.1"
 pytest = "^7.4.2"
 snakemake = {git = "https://github.com/snakemake/snakemake.git"}
+snakemake-storage-plugin-s3 = "^0.2.4"
+
+[tool.coverage.run]
+omit = [".*", "*/site-packages/*", "Snakefile"]
 
 [build-system]
 requires = ["poetry-core"]

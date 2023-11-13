@@ -9,7 +9,7 @@ from snakemake_executor_plugin_tibanna import ExecutorSettings
 BUCKET_NAME = "snakemake-testing-%s-bucket" % next(tempfile._get_candidate_names())
 
 
-class TestWorkflowsBase(snakemake.common.tests.TestWorkflowsBase):
+class TestWorkflows(snakemake.common.tests.TestWorkflowsMinioPlayStorageBase):
     __test__ = True
 
     def get_executor(self) -> str:
@@ -21,12 +21,15 @@ class TestWorkflowsBase(snakemake.common.tests.TestWorkflowsBase):
             sfn=...,  # TODO add test sfn
         )
 
-    def get_default_remote_provider(self) -> Optional[str]:
-        # Return name of default remote provider if required for testing,
-        # otherwise None.
-        return "S3"
+    def get_assume_shared_fs(self) -> bool:
+        return False
 
-    def get_default_remote_prefix(self) -> Optional[str]:
-        # Return default remote prefix if required for testing,
-        # otherwise None.
-        return BUCKET_NAME
+    def get_remote_execution_settings(
+        self,
+    ) -> snakemake.settings.RemoteExecutionSettings:
+        return snakemake.settings.RemoteExecutionSettings(
+            seconds_between_status_checks=10,
+            envvars=self.get_envvars(),
+            # TODO remove once we have switched to stable snakemake for dev
+            container_image="snakemake/snakemake:latest",
+        )
